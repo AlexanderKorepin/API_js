@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Задание 1 (тайминг 30 минут)
+Работа с BOM
+1. Определение текущего размера окна браузера:
+- Напишите функцию, которая будет выводить текущую ширину и высоту окна браузера при его изменении.
+2. Подтверждение закрытия страницы:
+- Создайте всплывающее окно или диалоговое окно, которое появляется при попытке закрыть вкладку
+браузера и спрашивает пользователя, уверен ли он в своем решении закрыть страницу.
+3. Управление историей переходов:
+- Используйте объект history для управления историей переходов на веб-странице. Создайте кнопки "Назад" и
+"Вперед" для перемещения по истории. -->
+<section class="task">
+    <h1>Определение текущего размера окна браузера</h1>
+    <p>Ширина окна: <span class="window-size" id="width"></span> px</p>
+    <p>Высота окна: <span class="window-size" id="height"></span> px</p>
+</section>
+<section>
+    <h1>Подтверждение закрытия страницы</h1>
+    <p>Это страница с подтверждением закрытия.</p>
+</section>
+<section>
+    <h1>Управление историей переходов</h1>
+    <button class="history-button" id="goBack">Назад</button>
+    <button class="history-button" id="goForward">Вперед</button>
+</section>
+<script>
+    // Задание 1
+    function getWindowSize() {
+        const widthEl = window.innerWidth;
+        const heightEl = window.innerHeight;
+        // document.querySelector('.window-size#width').textContent = width;
+        // document.querySelector('.window-size#height').textContent = height;
+        
+        // window.addEventListener('resize', () => {
+        //     document.querySelector('.window-size#width').textContent = window.innerWidth;
+        //     document.querySelector('.window-size#height').textContent = window.innerHeight;
+            
+        // });
+        // const windowSizeElement = document.querySelectorAll('.window-size');
+        width.textContent = widthEl;
+        height.textContent = heightEl;
+    };
+    window.addEventListener('load',getWindowSize);
+    window.addEventListener('resize', getWindowSize);
+    
+    // Задание 2
+    window.addEventListener('beforeunload', (event) => {
+        event.preventDefault();//останавливаем
+        event.returnValue = 'Вы уверены, что хотите закрыть страницу?';
+    });
+    
+    // Задание 3
+   goBack.addEventListener('load', function (e) {
+    window.history.back();
+   });
+   
+   goForward.addEventListener('load', function (e) {
+    window.history.forward();
+   
+   });
+    
+
+</script>
+    
+</body>
+</html>

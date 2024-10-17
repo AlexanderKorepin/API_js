@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Задание 2 (тайминг 30 минут)
+Вы должны создать веб-страницу, которая позволяет пользователю динамически
+управлять элементами на странице. Ниже приведены основные требования и функциональность:
+1. На странице должны быть кнопки "Добавить элемент", "Удалить элемент" и "Клонировать элемент".
+2. При нажатии на кнопку "Добавить элемент" на страницу добавляется новый квадратный элемент (<div>) с размерами 100x100 пикселей. Этот элемент
+должен иметь класс .box и содержать текст, указывающий порядковый номер элемента (1, 2, 3 и так далее).
+3. При нажатии на кнопку "Удалить элемент" удаляется последний добавленныйэлемент, если таковой имеется.
+4. При нажатии на кнопку "Клонировать элемент" создается копия последнегодобавленного элемента и добавляется на страницу.
+5. Все элементы имеют класс .box и стилизованы с помощью CSS (см. пример).
+6. Элементы могут быть добавлены, удалены и клонированы в любом порядке и влюбом количестве. -->
+
+    <style>
+       .box {
+            width: 100px;
+            height: 100px;
+            background-color: rgb(17, 117, 151);
+            margin: 5px;
+            padding: 10px;
+            text-align: center;
+            line-height: 100px;
+
+        }
+        #conteiner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+    </style>
+
+    <button id="addButton">Добавить элемент</button>
+
+    <button id="deleteButton">Удалить элемент</button>
+
+    <button id="cloneButton">Клонировать элемент</button>
+    <div id="conteiner">
+         <div class="box">1</div>
+         <div class="box">2</div>
+         <div class="box">3</div>  
+    </div>
+    <script>
+        addButton.addEventListener("click", function(e) {
+            const container = document.getElementById('conteiner');
+            const newBox = document.createElement('div');
+            newBox.classList.add('box');
+            newBox.textContent = container.children.length + 1;
+            container.append(newBox);  
+        });
+        
+        deleteButton.addEventListener("click", function(e) {
+            const container = document.getElementById('conteiner');
+            if(container.children.length > 0) {
+                container.removeChild(container.lastChild);
+            }
+        });
+        
+        cloneButton.addEventListener("click", function(e) {
+            const container = document.getElementById('conteiner');
+            if(container.children.length > 0) {
+                const lastBox = container.lastChild;
+                const clone = lastBox.cloneNode(true);
+                container.append(clone);
+            }       
+        });
+
+    </script>
+    
+</body>
+</html>

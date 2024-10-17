@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Задание 2 (тайминг 30 минут)
+Вы должны создать веб-страницу, которая позволяет пользователю динамически
+управлять элементами на странице. Ниже приведены основные требования и функциональность:
+1. На странице должны быть кнопки "Добавить элемент", "Удалить элемент" и "Клонировать элемент".
+2. При нажатии на кнопку "Добавить элемент" на страницу добавляется новый квадратный элемент (<div>) с размерами 100x100 пикселей. Этот элемент
+должен иметь класс .box и содержать текст, указывающий порядковый номер элемента (1, 2, 3 и так далее).
+3. При нажатии на кнопку "Удалить элемент" удаляется последний добавленныйэлемент, если таковой имеется.
+4. При нажатии на кнопку "Клонировать элемент" создается копия последнегодобавленного элемента и добавляется на страницу.
+5. Все элементы имеют класс .box и стилизованы с помощью CSS (см. пример).
+6. Элементы могут быть добавлены, удалены и клонированы в любом порядке и влюбом количестве. -->
+
+<section>
+    <button onclick="addBox()">Добавить элемент</button>
+    <button onclick="deleteLastBox()">Удалить элемент</button>
+    <button onclick="cloneLastBox()">Клонировать элемент</button>
+</section>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+   .box-container {
+    display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+   .box {
+    width: 100px;
+        height: 100px;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        padding: 10px;
+        text-align: center;
+        font-size: 16px;
+    }
+</style>
+
+
+<script>
+    let boxCounter = 1;
+    const controls = document.getElementById('controls');
+    const boxContainer = document.createElement('div');
+    boxContainer.classList.add('box-container');
+    document.body.appendChild(boxContainer);
+    
+    // Добавление элемента
+    function addBox() {
+        const box = document.createElement('div');
+        box.classList.add('box');
+        box.style.width = '100px';
+        box.style.height = '100px';
+        box.textContent = `Box ${boxCounter++}`;
+        boxContainer.appendChild(box);
+    }
+    
+    // Удаление последнего элемента
+    function deleteLastBox() {
+        const lastBox = boxContainer.lastElementChild;
+        if (lastBox) {
+            boxContainer.removeChild(lastBox);
+        }
+    }
+    
+    // Клонирование последнего элемента
+    function cloneLastBox() {
+        const lastBox = boxContainer.lastElementChild;
+        if (lastBox) {
+            const clonedBox = lastBox.cloneNode(true);
+            boxContainer.appendChild(clonedBox);
+        }
+    }
+    
+    // Кнопки управления
+    controls.addEventListener
+    ('click', (event) => {
+        if (event.target.id === 'addButton') {
+            addBox();
+        } else if (event.target.id === 'deleteButton') {
+            deleteLastBox();
+        } else if (event.target.id === 'cloneButton') {
+            cloneLastBox();
+        }
+    });
+    
+    // Пример использования
+    addBox();
+    addBox();   
+    deleteLastBox();
+    cloneLastBox();
+    </script>
+    
+</body>
+</html>

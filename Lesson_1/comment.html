@@ -1,0 +1,53 @@
+<!-- У вас есть дерево комментариев, представленных в виде вложенных элементов <>. Каждый комментарий имеет кнопку "ответить",
+ при нажатии на которую открывается форма для написания ответа. Ваша задача - реализовать функциональность, чтобы при нажатии на кнопку "ответить", 
+ только форма этого конкретного комментария открывалась, остальные формы оставались закрытыми.-->
+ <style>
+    .reply-form {
+         display: none;
+    }
+ </style>
+ <div class="comment">
+    <p>Комментарий 1</p>
+    <button class="reply-button">Ответить</button>
+    <form class="reply-form">
+         <textarea placeholder="Напишите ответ..."></textarea>
+         <button type="submit">Отправить</button>
+    </form>
+</div>
+    <div class="comment">
+        <p>Комментарий 2</p>
+        <button class="reply-button">Ответить</button>
+        <form class="reply-form">
+            <textarea placeholder="Напишите ответ..."></textarea>
+            <button type="submit">Отправить</button>
+         </form>
+    </div>
+
+    <div class="comment">
+        <p>Комментарий 3</p>
+        <button class="reply-button">Ответить</button>
+        <form class="reply-form">
+            <textarea placeholder="Напишите ответ..."></textarea>
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+ 
+ <script>
+    const replyButtons = document.querySelectorAll('.reply-button');
+    replyButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const comment = button.closest('.comment');
+            const replyForm = comment.querySelector('.reply-form');
+
+            //Скрываем все формы ответа
+            const allReplyForms = document.querySelectorAll('.reply-form');
+            allReplyForms.forEach(form => {
+                if (form !== replyForm){
+                    form.style.display = 'none';
+                }
+            });
+            //Отобразаем формы ответа только для текущего комментария
+            replyForm.style.display = 'block';
+        });
+    });
+ </script>

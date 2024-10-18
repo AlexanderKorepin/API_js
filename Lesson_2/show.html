@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .content {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3 ease;
+        }
+        .visible {
+            opacity: 1;
+            max-height: 500px;
+           
+            transition: all 0.3 ease;
+        }
+
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="toogleCeckbox">
+    <label for="toogleCeckbox">Показать/скрыть контент</label>
+    <div class="content">
+        <h1>Заголовок</h1>
+        <p>Содержимое контента</p>
+    </div>
+    <script>
+        const checkbox = document.getElementById('toogleCeckbox');
+        const content = document.querySelector('.content');
+        
+        checkbox.addEventListener('change', function (e) {
+            if (this.checked) {
+                content.classList.add('visible');   
+            } else {
+                content.classList.remove('visible');
+            }
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .loader .fa-spinner {
+        font-size: 40px;
+        color: #333;
+        animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+        0%{
+            transform: rotate(0deg);
+        }
+        100%{
+            transform: rotate(360deg);
+        }
+    }
+    .hidden{
+        display: none;
+    }
+</style>
+<body>
+    <div class="loader">
+        <i class="fas fa-spin"></i>
+    </div>
+    <div class="content hidden">
+        <h1>Заголовок</h1>
+        <p>Содержание контента</p>
+        <img src="https://img.freepik.com/free-photo/landscape-morning-fog-mountains-with-hot-air-balloons-sunrise_335224-794.jpg?t=st=1729237818~exp=1729241418~hmac=8b01ccd7d9f27385786acbbe4e898b08696b89acaeab3f0c359222578c2c9142&w=1060" alt="cat">
+    </div>
+    <script>
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.loader');
+            const content = document.querySelector('.content');
+            content.classList.remove('hidden');
+            loader.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>

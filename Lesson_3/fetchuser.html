@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Информация о случайных пользователях</h1>
+    <label for="sort-select">Сортировка:</label>
+    <select id="sort-select">
+        <option value="name">По имени</option>
+        <option value="age">По возрасту</option>
+    </select>
+    <div id="user-list"></div>
+    <script>
+        //Получаем ссылки на элементы страницы
+        const userLisElement = document.querySelector('#user-list');
+        const sortSelect = document.querySelector('#sort-select');
+        // Загружаем данные о случайных пользователях с помощью API
+         fetch('https://randomuser.me/api/?results=10')
+            .then(response => response.json())//Преобразуем ответ в формат JSON
+            .then(data => {
+              
+                let users = data.results;// Получаем массив с данными о пользователях
+                //Первоначальный вывод списка пользователей
+                randerUserList(users);
+                //Обработчик события изменения выбора в селекте
+                sortSelect.addEventListener('change', () => {
+                    const selectedOption = sortSelect.value; // Получаем выбранный параметр сортировки
+                    users = sortUsers(users, selectedOption)// Сортируем пользователей в соответствии с выбранным параметром
+                    renderUserList(users); // Выводим отсортированный список пользователей на страницу
+            });
+        })
+        .catch(error => console.log(error));
+    // Функция для вывода списка пользователей на страницу
+    function randerUserList(users) {
+        userLisElement.innerHTML = ''; // Очищаем список
+    // Создаем элементы HTML для каждого пользователя и добавляем их в списак
+        users.forEach(user => {
+            const userElement = createUserElement(user);
+            userLisElement.appendChild(userElement);
+            
+        });
+    }
+    // Функция для создания элемента HTML для отображения одного пользователя
+    function createUserElement(user) {
+        const userElement = document.createElement('div');
+        userElement.classList.add('user');
+        userElement.innerHTML = `
+            <img src="${user.picture.large}" alt="User Avatar">
+            <h2>${user.name.first} ${user.name.last}</h2>
+            <p>Email: ${user.email}</p>
+            <p>Age: ${user.dob.age}</p>
+        `;
+        return userElement;
+    }
+    // Функция для рендеринга отсортированного списка пользователей на страницу
+    function renderUserList(users) {
+        randerUserList(users);
+    }
+    // Обработчик события клика по кнопке "Сгенерировать новые данные"
+    // document.querySelector('#generate-button').addEventListener('click',
+    // Функция для сортировки массива пользователей
+    function sortUsers(users, sortBy) {
+        return users.sort((a, b) => {
+            if (sortBy === 'name') {
+                return a.name.first.localeCompare(b.name.first); // Сортировка по имени с использованием метода localeCompare()
+            } else if (sortBy === 'age') {
+                return a.dob.age - b.dob.age;
+            }
+        });
+    }
+    // Функция для ренд
+
+                   
+        
+    </script>
+
+
+</body>
+</html>

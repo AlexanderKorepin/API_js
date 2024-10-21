@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="superForm" onsubmit="console.log('Форма отправлена'); return false">
+        email: <input type="email" name="email">
+        checkbox: <input type="checkbox" name="checkbox">
+        <input type="submit">
+    <script>
+        const form = document.forms.superForm;
+
+        form.checkbox.oninput = () => {
+            form.submit();
+        }
+    </script>
+
+
+    </form>
+</body>
+</html>

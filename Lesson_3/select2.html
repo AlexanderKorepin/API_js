@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Вы разрабатываете веб приложение для выбора и отображения данных о странах. У вас есть форма включающая елемент select, 
+    в котором пользователь может выбрать определенную страну. При выборе страны вам необходимо динамически обновлять другой элемент на странице,
+    наример, отображать информацию о столице выбранной страны. -->
+    <h1>Выберите страну:</h1>
+    <form id="country-form">
+        <select id="country-select">
+            <option value="">Выберите страну</option>
+            <option value="russia">Россия</option>
+            <option value="ukraine">Украина</option>
+            <option value="belarus">Белоруссия</option>
+            <option value="kazakhstan">Казахстан</option>
+            <option value="azerbaijan">Азербайджан</option>
+            <option value="uzbekistan">Узбекистан</option>
+            <option value="tajikistan">Таджикистан</option>
+            <option value="kazakhstan">Казахстан</option>
+            <option value="kyrgyzstan">Киргизия</option>
+            <option value="georgia">Грузия</option>
+            <option value="armenia">Армения</option>
+            <option value="azerbaijan">Азербайджан</option>
+            <option value="turkmenistan">Туркменистан</option>
+            <option value="uzbekistan">Узбекистан</option>
+        </select>
+    </form>
+    <h2>Столица выбранной страны:</h2>
+    <p id="capital-info">Выберите страну, чтобы узнать столицу.</p>
+    <script>
+        const selectElement = document.querySelector('#country-select');
+        const capitalInfoElement = document.querySelector('#capital-info');
+
+        selectElement.onchange = function () {
+            const selectedCountry = selectElement.value;
+            console.log(selectedCountry);
+            
+            let capital = '';
+            // Заполните данные о столицах стран с вашими данными
+            switch (selectedCountry) {
+                case 'russia':
+                    capital = 'Москва';
+                    break;
+                case 'ukraine':
+                    capital = 'Киев';
+                    break;
+                
+                // Добавьте данные о столицах для других стран
+
+
+                default:
+                    capital = 'Данные о столице не найдены';
+                    break;
+
+                
+                
+            }
+
+            capitalInfoElement.textContent = capital;
+        };
+
+    </script>
+    
+</body>
+</html>
